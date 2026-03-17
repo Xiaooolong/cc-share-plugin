@@ -15,12 +15,11 @@ Upload the current conversation to CC Share and return a shareable URL.
 ## Instructions
 
 If Token is "NOT_SET", tell the user:
-> To use /share, create `~/.cc-share` with your config:
-> ```
-> CC_SHARE_TOKEN=your_token
-> CC_SHARE_URL=https://your-server.com
-> ```
-> Get your token by logging in at your CC Share dashboard.
+> To use /share, you need to set up your token first:
+> 1. Go to https://cc-share.onrender.com and login with GitHub
+> 2. Copy the config command from your dashboard
+> 3. Run it in your terminal — it creates `~/.cc-share` with your token
+> Then try `/share` again.
 
 Then stop. Do not proceed.
 
