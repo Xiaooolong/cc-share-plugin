@@ -26,7 +26,7 @@ Then stop. Do not proceed.
 
 If Token is set, do the following:
 
-1. Find the current conversation JSONL at `~/.claude/projects/`. The directory name matches the project path with `/` replaced by `-` and `:` removed. Pick the most recent `.jsonl` file in that directory.
+1. Find the current conversation JSONL. List `~/.claude/projects/` and find the directory matching the current project. CC converts paths like `E:/drafts/my_project` → `E--drafts-my-project` (`:` removed, `/` and `_` replaced by `-`). Pick the most recent `.jsonl` file in that directory.
 
 2. Upload it:
 ```bash
