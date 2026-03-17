@@ -1,0 +1,12 @@
+{
+  "name": "cc-share",
+  "version": "0.1.0",
+  "description": "Share Claude Code conversations via a link. One command to export, one link to share.",
+  "author": {
+    "name": "Xiaolong",
+    "url": "https://github.com/Xiaooolong"
+  },
+  "repository": "https://github.com/Xiaooolong/cc-share-plugin",
+  "license": "MIT",
+  "keywords": ["share", "conversation", "export", "collaboration"]
+}
