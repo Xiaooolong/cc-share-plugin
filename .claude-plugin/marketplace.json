@@ -10,10 +10,7 @@
       "name": "cc-share",
       "description": "Share your Claude Code conversations with collaborators via a shareable link",
       "version": "0.1.0",
-      "source": {
-        "source": "path",
-        "path": "."
-      }
+      "source": "./plugins/cc-share"
     }
   ]
 }
