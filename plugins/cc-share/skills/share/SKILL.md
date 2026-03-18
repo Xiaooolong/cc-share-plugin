@@ -9,12 +9,11 @@ Upload the current conversation to CC Share and return a shareable URL.
 
 ## Config
 
-- Token: !`grep CC_SHARE_TOKEN ~/.cc-share 2>/dev/null | cut -d= -f2 || echo "NOT_SET"`
-- URL: !`grep CC_SHARE_URL ~/.cc-share 2>/dev/null | cut -d= -f2 || echo "NOT_SET"`
+!`cat ~/.cc-share`
 
 ## Instructions
 
-If Token is "NOT_SET", tell the user:
+If the config above is empty or shows an error, tell the user:
 > Looks like /share isn't set up yet. Quick fix:
 > 1. Open https://cc-share.onrender.com and sign in with GitHub
 > 2. You'll see a setup command on your dashboard — copy and paste it in your terminal
@@ -22,7 +21,7 @@ If Token is "NOT_SET", tell the user:
 
 Then stop. Do not proceed.
 
-If Token is set, do the following:
+If the config contains CC_SHARE_TOKEN and CC_SHARE_URL, extract their values and do the following:
 
 1. Find the current conversation JSONL. List `~/.claude/projects/` and find the directory matching the current project. CC converts paths like `E:/drafts/my_project` → `E--drafts-my-project` (`:` removed, `/` and `_` replaced by `-`). Pick the most recent `.jsonl` file in that directory.
 
