@@ -5,33 +5,41 @@ description: Share the current Claude Code conversation via a link
 
 # Share This Conversation
 
-Upload the current conversation to CC Share and return a shareable URL.
+Share the current conversation to CC Share and return a URL. Follow these steps in order.
 
-## Config
+## Step 1 — Read config
 
-!`cat ~/.cc-share`
-
-## Instructions
-
-If the config above is empty or shows an error, tell the user:
-> Looks like /share isn't set up yet. Quick fix:
-> 1. Open https://cc-share.onrender.com and sign in with GitHub
-> 2. You'll see a setup command on your dashboard — copy and paste it in your terminal
-> 3. Then run `/share` again and you're good to go!
-
-Then stop. Do not proceed.
-
-If the config contains CC_SHARE_TOKEN and CC_SHARE_URL, extract their values and do the following:
-
-1. Find the current conversation JSONL. List `~/.claude/projects/` and find the directory matching the current project. CC converts paths like `E:/drafts/my_project` → `E--drafts-my-project` (`:` removed, `/` and `_` replaced by `-`). Pick the most recent `.jsonl` file in that directory.
-
-2. Upload it:
-```bash
-curl -s -X POST "<URL>/api/upload" \
-  -H "Authorization: Bearer <TOKEN>" \
-  -F "file=@<JSONL_PATH>"
+Read the file `~/.cc-share`. It should contain two lines:
+```
+CC_SHARE_TOKEN=xxx
+CC_SHARE_URL=https://...
 ```
 
-3. Show the user the returned `url` field. Done.
+If the file doesn't exist or is missing either value, tell the user:
 
-Do NOT parse the JSONL. Do NOT ask questions. Just find the file, curl it, show the URL.
+> Looks like /share isn't set up yet. Quick fix:
+> 1. Open https://cc-share.onrender.com and sign in with GitHub
+> 2. Copy the setup command from your dashboard and paste it in your terminal
+> 3. Then run `/share` again
+
+Then stop.
+
+## Step 2 — Find the conversation file
+
+List the directories in `~/.claude/projects/` and find the one matching the current project. CC converts project paths like `E:/drafts/my_project` to `E--drafts-my-project` (`:` removed, `/` and `_` replaced by `-`).
+
+Find the most recent `.jsonl` file in that directory.
+
+## Step 3 — Upload
+
+Run this command (replace TOKEN, URL, and JSONL_PATH with actual values from steps 1 and 2):
+
+```bash
+curl -s -X POST "URL/api/upload" -H "Authorization: Bearer TOKEN" -F "file=@JSONL_PATH"
+```
+
+## Step 4 — Done
+
+Show the user the `url` from the response. That's it.
+
+**Important:** Do NOT parse the JSONL yourself. Do NOT ask any questions. Just read config, find file, curl, show URL.
